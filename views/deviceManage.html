@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>智能节能系统V2终端配置</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="../tools/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="../tools/bootstrap/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/gritter/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/layer_mobile/need/layer.css" rel="stylesheet" type="text/css"/>
+
+	<link rel="shortcut icon" href="../assets/image/xunweilogo.png" />
+	<style>
+		.devInfo{
+			margin: 0px 0px;
+			height: 110px;
+		}
+		.devInfo img{
+			height: 80px;
+			margin: 13px 0px 10px 2px;
+		}
+		.devTitle{
+			position: relative;
+			margin-left: 115px;
+			top: -89px;
+		}
+		.devContent{
+			background: #04597b !important;
+			margin-bottom: 10px;
+		}
+		.devName{
+			height: 30px;
+			color: #0fe8f7;
+			font-size: 15px;
+			font-weight: 700;
+			margin-right: 43px;
+		}
+		.devNo{
+			height: 30px;
+		}
+
+	</style>
+</head>
+<body class="page-header-fixed page-full-width">
+
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="javascript:;">
+					<img src="../assets/image/logo.png" alt="logo" />
+				</a>
+				<div class="navbar hor-menu hidden-phone hidden-tablet">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><a href="systemStatus.html">系统状态</a></li>
+							<li><a href="networkConfig.html">网络配置</a></li>
+							<li class="active"><a href="deviceManage.html">设备管理</a></li>
+							<li><a href="weChat.html">微信用户</a></li>
+						</ul>
+					</div>
+				</div>
+				<ul class="nav pull-right hidden-phone hidden-tablet">
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username" id="xw_username"></span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+							<li><a href="javascript:;" id="exit_system"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav pull-right visible-phone visible-tablet" style="margin-top: -55px;" >
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username">admin</span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+							<li><a href="javascript:;" id="exit_system_mobile"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="page-container row-fluid">
+		<div class="navbar hor-menu visible-phone visible-tablet navBarTop">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li>
+						<a href="systemStatus.html"><div><img src="../assets/image/systemStatus.png"></div>系统状态</a>
+					</li>
+					<li>
+						<a href="networkConfig.html"><div><img src="../assets/image/wifiConfig.png"></div>网络配置</a>
+					</li>
+					<li class="active">
+						<a href="deviceManage.html"><div><img src="../assets/image/device.png"></div>设备管理</a>
+					</li>
+					<li>
+						<a href="weChat.html"><div><img src="../assets/image/weChat.png"></div>微信用户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="page-content">
+			<div class="row-fluid" >
+				<div class="span12">
+					<div class="block-yellow" >
+						<div class="container">
+							<div class="portlet" style="margin-top: 30px">
+								<div class="portlet-title">
+									<!--<div class="caption">默认组</div>-->
+									<!--<div class="tools">
+										<a href="javascript:;" class=" btn blue" id="addGroup">添加组</a>
+									</div>-->
+									
+								</div>
+								<div class="portlet-body" >
+									<div id="deviceList"></div>
+									<div class="row-fluid">
+										<div class="span4 devContent">
+											<div class="devInfo">
+												<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+													<a href="javascript:;" id="addGroup">
+														<img src="../assets/image/plus_new.png" style="height: 70px;margin-top: 6px;"></a>
+														<div style="color: #3ffb99">组</div>
+												</div>
+											</div>
+										</div>
+										<div class="span4 devContent">
+											<div class="devInfo">
+												<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+													<a href="javascript:;" onclick="DeviceManage.fnGetDevInfo('-1','-1')">
+														<img src="../assets/image/plus_new.png" style="height: 70px;margin-top: 6px;"></a>
+														<div style="color: #3ffb99">设备</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row-fluid" id="energyGroup">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../tools/jquery/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="../tools/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="../tools/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<script src="../tools/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../tools/cookie/jquery.cookie.min.js" type="text/javascript"></script>
+
+	<script src="../tools/gritter/jquery.gritter.js" type="text/javascript"></script>
+	<script src="../tools/doT/doT.min.js" type="text/javascript"></script>
+	<!--<script src="../tools/layer/layer.js" type="text/javascript"></script>-->
+	<script src="../tools/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<script src="../tools/validate/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../tools/validate/form-validate.js" type="text/javascript"></script>
+	<script src="../tools/layer_mobile/layer.js" type="text/javascript"></script>
+	<script src="../tools/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+	<script src="../config/app.js" type="text/javascript"></script>
+	<script src="../config/public-constant.js" type="text/javascript"></script>
+	<script src="../config/common.js" type="text/javascript"></script>
+	<script src="../assets/js/deviceManage.js" type="text/javascript"></script>
+
+	<script>
+		jQuery(document).ready(function() {
+			App.init();
+			CommonJS.fnInit();
+			DeviceManage.fnInit();
+		});
+	</script>
+	<!--默认组设备模板-->
+	<script id="deviceListTemplate" type="text/x-dot-template">
+		{{for(var i=0;i<(it.len);i++){ }}
+		<div class="row-fluid" >
+			{{for(var j=i*3;j<(i+1)*3;j++){ }}
+				<div class="span4 devContent">
+					<div class="devInfo">
+						{{? it.data[j].DevTypeId ===1 }}
+							<img src="../assets/image/damp.png">
+						{{?? it.data[j].DevTypeId ===3 || it.data[j].DevTypeId ===4 || it.data[j].DevTypeId ===5}}
+							<img src="../assets/image/meter.png">
+						{{?? it.data[j].DevTypeId ===34 }}
+							<img src="../assets/image/water.png">
+						{{?? it.data[j].DevTypeId ===35}}
+							<img src="../assets/image/red.png">
+						{{?? it.data[j].DevTypeId ===33}}
+							<img src="../assets/image/smg.png">
+						{{?? it.data[j].DevTypeId ===107}}
+							<img src="../assets/image/camera.png">
+						{{?? it.data[j].DevTypeId ===17 || it.data[j].DevTypeId ===18}}
+							<img src="../assets/image/airControl.png">
+						{{?}}
+
+						{{? it.data[j].DevTypeId ===-1 }}
+							<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;" >
+								<a href="javascript:;" onclick="DeviceManage.fnGetDevInfo('{{=it.groupId}}','-1')">
+									<img src="../assets/image/plus_new.png" style="height: 70px;margin-top: 6px;">
+								</a>
+								<div style="color: #3ffb99">设备</div>
+							</div>
+						{{?? }}
+							<div class="devTitle">
+								<div class="devName">{{=it.data[j].DevName}}</div>
+								<div class="devNo">类型：<span>{{=it.data[j].DtName}}</span></div>
+								<div style="margin-top: -8px;">
+									<button  class="btn blue mini"  onclick="DeviceManage.fnGetDevInfo('{{=it.data[j].DevTypeId}}','{{=it.data[j].DevId}}')">管理</button>
+									<button  class="btn blue mini"  onclick="DeviceManage.fnAlloGroup('{{=it.data[j].DevId}}')">分配</button>
+									<button class="btn blue mini"  onclick="DeviceManage.fnDelDevInfo('{{=it.data[j].DevId}}')">删除</button>
+								</div>
+							</div>
+						{{?}}
+
+					</div>
+
+				</div>
+			{{ } }}
+		</div>
+		{{ } }}
+		<div class="row-fluid">
+			{{for(var k=(it.len)*3;k<(it.data.length);k++){ }}
+				<div class="span4 devContent">
+					<div class="devInfo">
+						{{? it.data[k].DevTypeId ===1 }}
+						<img src="../assets/image/damp.png">
+						{{?? it.data[k].DevTypeId ===3 || it.data[k].DevTypeId ===4 || it.data[k].DevTypeId ===5}}
+						<img src="../assets/image/meter.png">
+						{{?? it.data[k].DevTypeId ===34 }}
+						<img src="../assets/image/water.png">
+						{{?? it.data[k].DevTypeId ===35}}
+						<img src="../assets/image/red.png">
+						{{?? it.data[k].DevTypeId ===33}}
+						<img src="../assets/image/smg.png">
+						{{?? it.data[k].DevTypeId ===107}}
+						<img src="../assets/image/camera.png">
+						{{?? it.data[k].DevTypeId ===17 || it.data[k].DevTypeId ===18}}
+						<img src="../assets/image/airControl.png">
+						{{? }}
+
+						{{? it.data[k].DevTypeId ===-1 }}
+							<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;" >
+								<a href="javascript:;" onclick="DeviceManage.fnGetDevInfo('{{=it.groupId}}','-1')">
+									<img src="../assets/image/plus_new.png" style="height: 70px;margin-top: 6px;">
+								</a>
+								<div style="color: #3ffb99">设备</div>
+							</div>
+						{{?? }}
+							<div class="devTitle">
+								<div class="devName">{{=it.data[k].DevName}}</div>
+								<div class="devNo">
+									类型：<span>{{=it.data[k].DtName}}</span>
+								</div>
+								<div style="margin-top: -8px;">
+									<button  class="btn blue mini" onclick="DeviceManage.fnGetDevInfo('{{=it.data[k].DevTypeId}}','{{=it.data[k].DevId}}')">管理</button>
+									<button  class="btn blue mini"  onclick="DeviceManage.fnAlloGroup('{{=it.data[k].DevId}}')">分配</button>
+									<button class="btn blue mini" onclick="DeviceManage.fnDelDevInfo('{{=it.data[k].DevId}}')">删除</button>
+								</div>
+							</div>
+						{{?}}
+
+					</div>
+
+				</div>
+			{{ } }}
+		</div>
+	</script>
+	<!--相关组模板-->
+	<script id="energyGroupTemplate" type="text/x-dot-template">
+		{{for(var i=0;i<(it.data.length);i++){ }}
+		{{? it.data[i].groupId !=0}}
+		<div class="portlet" >
+			<div class="portlet-title">
+				<div class="caption">
+					{{=it.data[i].groupName}}
+					<span style="margin-left: 12px;">容纳人数：{{=it.data[i].capacity}}</span>
+					<span style="margin-left: 5px;">面积(㎡)：{{=it.data[i].area}}</span>
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class=" btn blue" onclick="DeviceManage.fnMdfGroup('{{=it.data[i].groupId}}','{{=it.data[i].groupName}}','{{=it.data[i].area}}','{{=it.data[i].capacity}}')">修改</a>
+					<a href="javascript:;" class=" btn blue" onclick="DeviceManage.fnDelGroup('{{=it.data[i].groupId}}')">删除</a>
+				</div>
+			</div>
+			<div class="portlet-body" >
+				<div class="row-fluid" id="group{{=it.data[i].groupId}}">
+
+				</div>
+			</div>
+		</div>
+		{{?}}
+
+		{{ } }}
+    </script>
+	<!--相关组设备模板-->
+	<script id="groupDeviceListTemplate" type="text/x-dot-template">
+		{{for(var i=0;i<(it.len);i++){ }}
+		<div class="row-fluid" >
+			{{for(var j=i*3;j<(i+1)*3;j++){ }}
+			<div class="span4 devContent">
+				<div class="devInfo">
+					{{? it.data[j].DevTypeId ===1 }}
+					<img src="../assets/image/damp.png">
+					{{?? it.data[j].DevTypeId ===3 || it.data[j].DevTypeId ===4 || it.data[j].DevTypeId ===5}}
+					<img src="../assets/image/meter.png">
+					{{?? it.data[j].DevTypeId ===34 }}
+					<img src="../assets/image/water.png">
+					{{?? it.data[j].DevTypeId ===35}}
+					<img src="../assets/image/red.png">
+					{{?? it.data[j].DevTypeId ===33}}
+					<img src="../assets/image/smg.png">
+					{{?? it.data[j].DevTypeId ===107}}
+					<img src="../assets/image/camera.png">
+					{{?? it.data[j].DevTypeId ===17 || it.data[j].DevTypeId ===18}}
+					<img src="../assets/image/airControl.png">
+					{{?}}
+
+					{{? it.data[j].DevTypeId ===-1 }}
+					<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+						<a href="javascript:;" onclick="DeviceManage.fnAddDevGroup('{{=it.groupId}}')">
+							<img src="../assets/image/plus.png" style="height: 70px;margin-top: 6px;"></a>
+						<div style="color: #0fe8f7">已有设备</div>
+					</div>
+					{{?? }}
+					<div class="devTitle">
+						<div class="devName">{{=it.data[j].DevName}}</div>
+						<div class="devNo">类型：<span>{{=it.data[j].DtName}}</span></div>
+						<div style="margin-top: -8px;">
+							<button class="btn blue mini" onclick="DeviceManage.fnGetDevInfo('{{=it.data[j].DevTypeId}}','{{=it.data[j].DevId}}')">管理</button>
+							<button class="btn blue mini" onclick="DeviceManage.fnMoveDev('{{=it.data[j].DevId}}','{{=it.groupId}}')">移除</button>
+						</div>
+					</div>
+					{{?}}
+
+				</div>
+
+			</div>
+			{{ } }}
+		</div>
+		{{ } }}
+		<div class="row-fluid">
+			{{for(var k=(it.len)*3;k<(it.data.length);k++){ }}
+			<div class="span4 devContent">
+				<div class="devInfo">
+					{{? it.data[k].DevTypeId ===1 }}
+					<img src="../assets/image/damp.png">
+					{{?? it.data[k].DevTypeId ===3 || it.data[k].DevTypeId ===4 || it.data[k].DevTypeId ===5}}
+					<img src="../assets/image/meter.png">
+					{{?? it.data[k].DevTypeId ===34 }}
+					<img src="../assets/image/water.png">
+					{{?? it.data[k].DevTypeId ===35}}
+					<img src="../assets/image/red.png">
+					{{?? it.data[k].DevTypeId ===33}}
+					<img src="../assets/image/smg.png">
+					{{?? it.data[k].DevTypeId ===107}}
+					<img src="../assets/image/camera.png">
+					{{?? it.data[k].DevTypeId ===17 || it.data[k].DevTypeId ===18}}
+					<img src="../assets/image/airControl.png">
+					{{? }}
+
+					{{? it.data[k].DevTypeId ===-1 }}
+					<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+						<a href="javascript:;" onclick="DeviceManage.fnAddDevGroup('{{=it.groupId}}')">
+							<img src="../assets/image/plus.png" style="height: 70px;margin-top: 6px;"></a>
+						<div style="color: #0fe8f7">已有设备</div>
+					</div>
+					{{?? }}
+					<div class="devTitle">
+						<div class="devName">{{=it.data[k].DevName}}</div>
+						<div class="devNo">
+							类型：<span>{{=it.data[k].DtName}}</span>
+						</div>
+						<div style="margin-top: -8px;">
+							<button class="btn blue mini" onclick="DeviceManage.fnGetDevInfo('{{=it.data[k].DevTypeId}}','{{=it.data[k].DevId}}')">管理</button>
+							<button class="btn blue mini" onclick="DeviceManage.fnMoveDev('{{=it.data[k].DevId}}','{{=it.groupId}}')">移除</button>
+						</div>
+					</div>
+					{{?}}
+
+				</div>
+
+			</div>
+			{{ } }}
+		</div>
+	</script>
+	<!--分配组模板-->
+	<script id="alloGroupTemplate" type="text/x-dot-template">
+		<div class="scroller" data-height="150" data-always-visible="1" data-rail-visible1="1">
+			<ul class="Switch" id="alloGroupInfo">
+				{{for(var i=0;i<(it.data.length);i++){ }}
+				<li>
+					{{=it.data[i].groupName}}<label><input type="radio" name="groupName" value="{{=it.data[i].groupId}}"></label>
+				</li>
+				{{ } }}
+			</ul>
+		</div>
+	</script>
+	<!--组添加设备-->
+	<script id="addDevGroupTemplate" type="text/x-dot-template">
+		<div class="scroller" data-height="150" data-always-visible="1" data-rail-visible1="1">
+			<ul class="Switch" id="addDevGroupInfo">
+				{{for(var i=0;i<(it.data.length);i++){ }}
+				{{? it.data[i].GroupId ==0}}
+				<li>
+					{{=it.data[i].DevName}}<label><input type="checkbox" name="devName" value="{{=it.data[i].DevId}}"></label>
+				</li>
+				{{? }}
+				{{ } }}
+			</ul>
+		</div>
+	</script>
+	<!--添加组-->
+	<script id="addGroupTemplate" type="text/x-dot-template">
+		<form id="addGroupForm">
+			<ul class='netStatus'>
+				<li style='border: none;margin: auto;width: 265px;'>名称:
+					<label class='netRight'>
+						<input type='text' class='small' value="{{=it.group}}" id='groupName' name="groupName">
+					</label>
+				</li>
+				<li style='border: none;margin: auto;width: 265px;'>容纳人数:
+					<label class='netRight'>
+						<input type='text' class='small' value="{{=it.groupPeople}}" id='groupPeople' name="groupPeople">
+					</label>
+				</li>
+				<li style='border: none;margin: auto;width: 265px;'>面积(㎡):
+					<label class='netRight'>
+						<input type='text' class='small' value="{{=it.groupArea}}" id='groupArea' name="groupArea">
+					</label>
+				</li>
+			</ul>
+		</form>
+
+	</script>
+
+</body>
+</html>

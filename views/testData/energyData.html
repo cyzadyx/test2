@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>智能节能系统V2终端配置</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="../../tools/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/bootstrap/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/bootstrap/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/bootstrap/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/bootstrap/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="../../tools/bootstrap/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/gritter/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/layer_mobile/need/layer.css" rel="stylesheet" type="text/css"/>
+	<link href="../../tools/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../tools/dataTable/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+
+	<link rel="shortcut icon" href="../assets/image/xunweilogo.png" />
+	<style>
+		.devInfo{
+			margin: 0px 0px;
+			height: 110px;
+		}
+		.devInfo img{
+			height: 80px;
+			margin: 13px 0px 10px 2px;
+		}
+		.devTitle{
+			position: relative;
+			margin-left: 115px;
+			top: -89px;
+		}
+		.devContent{
+			background: #04597b !important;
+			margin-bottom: 10px;
+		}
+		.devName{
+			height: 30px;
+			color: #0fe8f7;
+			font-size: 15px;
+			font-weight: 700;
+			margin-right: 43px;
+		}
+		.devNo{
+			height: 30px;
+		}
+		
+	</style>
+</head>
+<body class="page-header-fixed page-full-width">
+
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="javascript:;">
+					<img src="../../assets/image/logo.png" alt="logo" />
+				</a>
+				<div class="navbar hor-menu hidden-phone hidden-tablet">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li  class="active"><a href="energyData.html">节能数据</a></li>
+							<li><a href="monitorData.html">模拟量数据</a></li>
+							<li><a href="alarmEvent.html">告警事件</a></li>
+							<li><a href="systemEvent.html">系统事件</a></li>
+						</ul>
+					</div>
+				</div>
+				<ul class="nav pull-right hidden-phone hidden-tablet">
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username" id="xw_username"></span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="../myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="../systemStatus.html"><i class="icon-certificate"></i>系统状态</a></li>
+							<li><a href="javascript:;" id="exit_system"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav pull-right visible-phone visible-tablet" style="margin-top: -55px;" >
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username">admin</span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="../myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="../systemStatus.html"><i class="icon-certificate"></i>系统状态</a></li>
+							<li><a href="javascript:;" id="exit_system_mobile"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="page-container row-fluid">
+		<div class="navbar hor-menu visible-phone visible-tablet navBarTop">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li  class="active">
+						<a href="energyData.html"><div><img src="../../assets/image/systemStatus.png"></div>节能数据</a>
+					</li>
+					<li>
+						<a href="monitorData.html"><div><img src="../../assets/image/wifiConfig.png"></div>模拟量数据</a>
+					</li>
+					<li >
+						<a href="alarmEvent.html"><div><img src="../../assets/image/device.png"></div>告警事件</a>
+					</li>
+					<li>
+						<a href="systemEvent.html"><div><img src="../../assets/image/weChat.png"></div>系统事件</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="page-content">
+			<div class="row-fluid" >
+				<div class="span12">
+					<div class="block-yellow" >
+						<div class="container">
+							<div class="portlet" style="margin-top: 30px">
+								<div class="portlet-title">
+									<div class="caption">										
+										节能组：<select id="group"></select>
+									</div>
+									<div class="tools" >
+										<button class="btn blue" id="refresh">刷新</button>
+									</div>
+								</div>
+								<div class="portlet-body" >
+									<div id="deviceList"></div>
+									<div class="row-fluid">
+										<div class="span4 devContent">
+											<div class="devInfo">
+												<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+													<a href="javascript:;" id="addGroup">
+														<img src="./img/hao.png" style="height: 70px;margin-top: 6px;"></a>
+														<div style="color: #3ffb99">总耗能(KW):<span id="energyOff"></span></div>
+												</div>
+											</div>
+										</div>
+										<div class="span4 devContent">
+											<div class="devInfo">
+												<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+													<a href="javascript:;" onclick="DeviceManage.fnGetDevInfo('-1','-1')">
+														<img src="./img/save.png" style="height: 70px;margin-top: 6px;"></a>
+														<div style="color: #3ffb99">总节能(KW):<span id="energyOn"></span></div>
+												</div>
+											</div>
+										</div>
+										<div class="span4 devContent">
+											<div class="devInfo">
+												<div class="span4 devContent" style="text-align: center;height: 110px;margin: auto 0;width: 100%;">
+													<a href="javascript:;" onclick="DeviceManage.fnGetDevInfo('-1','-1')">
+														<img src="./img/money.png" style="height: 70px;margin-top: 6px;"></a>
+														<div style="color: #3ffb99">总节能费用(元):<span id="energyMoney"></span></div>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid" >
+				<div class="span12">
+					<div class="block-yellow" >
+						<div class="container">
+							<div class="portlet" style="margin-top: 30px">
+								<div class="portlet-title">
+									<div class="caption">
+										时间筛选：<input type="text" id="dateRange" class="datepicker">
+									</div>
+									<div class="tools" >
+										<button class="btn blue" id="look">查看</button>
+									</div>
+								</div>
+								<div class="portlet-body">
+									<table class="table table-full-width table-hover " id="energyTable">
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../tools/jquery/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="../../tools/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="../../tools/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<script src="../../tools/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../../tools/cookie/jquery.cookie.min.js" type="text/javascript"></script>
+
+	<script src="../../tools/gritter/jquery.gritter.js" type="text/javascript"></script>
+	<script src="../../tools/doT/doT.min.js" type="text/javascript"></script>
+	<!--<script src="../tools/layer/layer.js" type="text/javascript"></script>-->
+	<script src="../../tools/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<script src="../../tools/validate/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../../tools/validate/form-validate.js" type="text/javascript"></script>
+	<script src="../../tools/layer_mobile/layer.js" type="text/javascript"></script>
+	<script src="../../tools/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	
+	<script src="../../tools/dataTable/jquery.dataTables.js" type="text/javascript"></script>
+	<script src="../../tools/dataTable/DT_bootstrap.js" type="text/javascript"></script>
+	<script src="../../tools/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="../../tools/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+
+
+	<script src="../../config/app.js" type="text/javascript"></script>
+	<script src="../../config/public-constant.js" type="text/javascript"></script>
+	<script src="./js/common.js" type="text/javascript"></script>
+	<script src="./js/energyData.js" type="text/javascript"></script>
+
+	<script>
+		jQuery(document).ready(function() {
+			App.init();
+			CommonJS.fnInit();
+			EnergyData.fnInit();
+		});
+</script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>智能节能系统V2终端配置</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="../tools/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="../tools/bootstrap/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/gritter/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/timepicker.css" rel="stylesheet" type="text/css" />
+    <link href="../tools/chosen/chosen.css" rel="stylesheet" type="text/css" />
+
+	<link rel="shortcut icon" href="../assets/image/xunweilogo.png" />
+	<style>
+		.devInfo{
+			margin: 0px 0px;
+			height: 110px;
+		}
+		.devInfo img{
+			height: 93px;
+			/*float: left;*/
+		}
+		.devTitle{
+			position: relative;
+			margin-left: 135px;
+			top: -89px;
+		}
+		.devContent{
+			background: #2e72ad;
+			margin-bottom: 10px;
+		}
+		.devName,.devNo{
+			height: 30px;
+		}
+
+	</style>
+</head>
+<body class="page-header-fixed page-full-width">
+
+    <div class="header navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="javascript:;">
+                    <img src="../assets/image/logo.png" alt="logo" />
+                </a>
+                <div class="navbar hor-menu hidden-phone hidden-tablet">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="systemStatus.html">系统状态</a></li>
+                            <li><a href="networkConfig.html">网络配置</a></li>
+                            <li class="active"><a href="deviceManage.html">设备管理</a></li>
+                            <li><a href="weChat.html">微信用户</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="nav pull-right hidden-phone hidden-tablet">
+                    <li class="dropdown user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="username" id="xw_username"></span><i class="icon-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+                            <li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+                            <li><a href="javascript:;" id="exit_system"><i class="icon-off"></i>退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav pull-right visible-phone visible-tablet" style="margin-top: -55px;" >
+                    <li class="dropdown user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="username">admin</span><i class="icon-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+                            <li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+                            <li><a href="javascript:;" id="exit_system_mobile"><i class="icon-off"></i>退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="page-container row-fluid">
+        <div class="navbar hor-menu visible-phone visible-tablet navBarTop">
+            <div class="navbar-inner">
+                <ul class="nav">
+                    <li>
+                        <a href="systemStatus.html"><div><img src="../assets/image/systemStatus.png"></div>系统状态</a>
+                    </li>
+                    <li>
+                        <a href="networkConfig.html"><div><img src="../assets/image/wifiConfig.png"></div>网络配置</a>
+                    </li>
+                    <li class="active">
+                        <a href="deviceManage.html"><div><img src="../assets/image/device.png"></div>设备管理</a>
+                    </li>
+                    <li>
+                        <a href="weChat.html"><div><img src="../assets/image/weChat.png"></div>微信用户</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container-fluid promo-page">
+                <div id="dashboard">
+                    <div class="row-fluid" id="devInfo" >
+
+                        <div class="span12">
+                            <div class="block-yellow" >
+                                <div class="container">
+                                    <div class="portlet" style="margin-top: 30px">
+                                        <div class="portlet-title">
+                                            <div class="caption">设备信息</div>
+                                            <div class="tools">
+                                                <a href="deviceManage.html" class=" btn blue"><i class="icon-long-arrow-left"></i>返回</a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body" style=" ">
+                                            <div class="row-fluid" id="devContent">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="portlet" style="margin-top: -15px;" id="devParam">
+                                        <div class="portlet-title">
+                                            <div class="caption" id="devTitle"></div>
+                                        </div>
+                                        <div class="portlet-body" >
+                                            <form class="form-horizontal form-view" id="mdf_dev_param">
+                                                <div class="row-fluid" id="devAttr"></div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <div  id="paramFooter">
+
+                                    </div>
+                                    <!--<div class="form-actions" style="margin-top: -16px;" >-->
+                                        <!--<a href="javascript:;" class="btn blue" id="mdfDevParamSub">保存</a>-->
+                                        <!--<a href="javascript:;" class="btn">取消</a>-->
+                                    <!--</div>-->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../tools/jquery/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="../tools/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../tools/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="../tools/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../tools/cookie/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="../tools/gritter/jquery.gritter.js" type="text/javascript"></script>
+    <script src="../tools/doT/doT.min.js" type="text/javascript"></script>
+    <script src="../tools/layer/layer.js" type="text/javascript"></script>
+    <script src="../tools/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+    <script src="../tools/bootstrap/js/bootstrap-timepicker.js" type="text/javascript"></script>
+    <script src="../tools/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+
+    <script src="../tools/validate/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="../tools/validate/form-validate.js" type="text/javascript"></script>
+
+    <script src="../config/app.js" type="text/javascript"></script>
+    <script src="../config/public-constant.js" type="text/javascript"></script>
+    <script src="../config/common.js" type="text/javascript"></script>
+
+    <script src="../assets/js/deviceInfo.js" type="text/javascript"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            CommonJS.fnInit();
+            DeviceInfo.fnInit();
+        });
+    </script>
+    <script id="FormTemplate" type="text/x-dot-template">
+
+        {{~it.data:value:index }}
+        <div class="row-fluid" style="margin-top: 5px;">
+            {{~value:val:ind}}
+            {{? value.length===1}}
+            <div class="span12 ">
+                {{?? }}
+                <div class="span6 ">
+                    {{?}}
+                    <div class="control-group">
+                        <label class="control-label">{{=val.name}}
+                            {{? val.required}}
+                            {{?}}
+                        </label>
+                        <div class="controls">
+                            {{? val.type=="text"}}
+                            <input type="text" class="m-wrap medium" placeholder="" id="{{=val.id }}" name="{{=val.textName}}" value="{{=val.val}}" autocomplete="off">
+                            {{?? val.type=="select"}}
+                            <select class="m-wrap" data-placeholder="--请选择一项--" style="width: 100%" tabindex="1" id="{{=val.id}}" name="{{=val.textName}}">
+                                <option value=""></option>
+                            </select>
+                            {{?? val.type=="radio"}}
+                            {{~val.radio:valOption:ind}}
+                            <label class="radio">
+                                {{? ind===0}}
+                                <input type="radio" checked name="{{=val.textName}}" value="{{=valOption.value}}" />
+                                {{?? }}
+                                <input type="radio" name="{{=val.textName}}" value="{{=valOption.value}}" />
+                                {{?}}
+                                {{=valOption.name}}
+                            </label>
+                            {{~}}
+                            {{?? }}
+                            {{?}}
+                        </div>
+                    </div>
+                </div>
+                {{? value.length===1}}
+            </div>
+            {{? }}
+            {{~}}
+        </div>
+        {{~ }}
+
+    </script>
+
+    <!--空调远程控制器模板-->
+    <script id="airRemoteTemplate" type="text/x-dot-template">
+        <div class="row-fluid">
+            <div class="span12" >
+                <a href="javascript:;" style="float: right" class=" btn blue" id="mdfGlTime"><i class="icon-plus-sign"></i>添加</a>
+            </div>
+        </div>
+        <div class="row-fluid" id="mdfGlSholdContent">
+            <div id="mdfGlSetting">
+                <div id="mdfGlTimeContent">
+                	{{? it.data.type !=null}}
+                    {{ for(var i=0;i<(it.data.type.length);i++) { }}
+                        <div class="row-fluid icon-btn" style="margin: 7px 0px;">
+                            <div class="span6" >
+                                <div class="control-group">
+                                    <label class="control-label">型号:</label>
+                                    <div class="controls">
+                                        <input type="text" name="{{=it.data.type[i]}}"  value="{{=it.data.type[i]}}" class="m-wrap medium mdfGlTypeInput" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span6" >
+                                <div class="control-group">
+                                    <label class="control-label">功率(KW):</label>
+                                    <div class="controls">
+                                        <input type="text" name="{{=it.data.power[i]}}"  value="{{=it.data.power[i]}}" class="m-wrap medium mdfGlPowerInput" required numberInt="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="badge badge-info delGlTime" style="cursor: pointer"><i class="icon-minus-sign"></i>删除</span>
+                        </div>
+                    {{ } }}
+                    {{?}}
+                </div>
+            </div>
+        </div>
+        <div class="portlet-title">
+            <div class="caption">阈值</div>
+        </div>
+    	<div class="row-fluid" style="margin-top: 5px;">
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最低温度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="l_temp" name="l_temp" value="{{=it.data.l_temp}}" onKeyUp="value=value.replace(/[^\d]/g,'')" >
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最高温度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="h_temp" name="h_temp" value="{{=it.data.h_temp}}" onKeyUp="value=value.replace(/[^\d]/g,'')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid" style="margin-top: 5px;">
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最低湿度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="l_humd" name="l_humd" value="{{=it.data.l_humd}}" onKeyUp="value=value.replace(/[^\d]/g,'')"> 
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最高湿度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="h_humd" name="h_humd" value="{{=it.data.h_humd}}" onKeyUp="value=value.replace(/[^\d]/g,'')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </script>
+    <!--空调远程控制器模板-->
+    <script id="MdfGlInputTimeTemplate" type="text/x-dot-template">
+        <div class="row-fluid icon-btn" style="margin: 7px 0px;">
+            <div class="span6" >
+                <div class="control-group">
+                    <label class="control-label">型号:</label>
+                    <div class="controls">
+                        <input type="text" name="{{=it.typeName}}"  value="{{=it.remark}}" class="m-wrap medium mdfGlTypeInput" required />
+                    </div>
+                </div>
+            </div>
+            <div class="span6" >
+                <div class="control-group">
+                    <label class="control-label">功率(KW):</label>
+                    <div class="controls">
+                        <input type="text" name="{{=it.powerName}}"  value="{{=it.properties}}" class="m-wrap medium mdfGlPowerInput" required numberInt="true"/>
+                    </div>
+                </div>
+            </div>
+            <span class="badge badge-info delHwTime" style="cursor: pointer"><i class="icon-minus-sign"></i>删除</span>
+        </div>
+    </script>
+
+
+    <!--温湿度-->
+    <script type="text/x-dot-template" id="tempDampParam">
+        <form class="form-horizontal form-view">
+            <div class="row-fluid" style="margin-top: 5px;">
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最低温度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="l_temp" name="l_temp" value="{{=it.data.l_temp}}" onKeyUp="value=value.replace(/[^\d]/g,'')" >
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最高温度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="h_temp" name="h_temp" value="{{=it.data.h_temp}}" onKeyUp="value=value.replace(/[^\d]/g,'')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid" style="margin-top: 5px;">
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最低湿度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="l_humd" name="l_humd" value="{{=it.data.l_humd}}" onKeyUp="value=value.replace(/[^\d]/g,'')"> 
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 ">
+                    <div class="control-group">
+                        <label class="control-label">最高湿度: </label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap medium" placeholder="" id="h_humd" name="h_humd" value="{{=it.data.h_humd}}" onKeyUp="value=value.replace(/[^\d]/g,'')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </script>
+    <!--红外-->
+    <script type="text/x-dot-template" id="redParam">
+        <form class='horizontal-form' id='mdf_hw_form' >
+            <div class="row-fluid" id="mdfHwSholdContent">
+                <div class="span12">
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="radio">
+                                <input type="radio" name="mdfHwSetting" value="0"/>
+                                默认设置
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="mdfHwSetting" value="1" />
+                                自定义设置（时间段）
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="span12" id="mdfFirstSetting" style="padding: 20px 0;">
+                    <div class="control-group">
+                        <div class="controls">
+                            <input class="m-wrap medium"  name="firstSetting" type="text" value="全天布防" placeholder="全天布防" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div id="mdfAutoSetting" style="display: none;">
+                    <div class="row-fluid">
+                        <div class="span12" >
+                            <a href="javascript:;" style="float: right" class=" btn blue" id="mdfHwTime"><i class="icon-plus-sign"></i>添加</a>
+                        </div>
+                    </div>
+                    <div id="mdfHwTimeContent">
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </script>
+    <script  id="MdfHwInputTimeTemplate" type="text/x-dot-template">
+        <div class="row-fluid icon-btn" >
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls" style="float: left">
+                        <span style="padding-top: 10px;display: inline-block;margin-right: 12px;margin-left: 5px;">开始时间:</span>
+                        <input type="text" name="mdfTypeName0"  class="m-wrap small uniform-input startTime text startTimePicker " readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls" style="float: left">
+                        <span style="padding-top: 10px;display: inline-block;margin-right: 12px;margin-left: 5px;">结束时间:</span>
+                        <input type="text" name="mdfPowerName0"  class="m-wrap small uniform-input endTime text endTimePicker"  readonly>
+
+                    </div>
+                </div>
+            </div>
+
+            <span class="badge badge-info delHwTime" style="cursor: pointer"><i class="icon-minus-sign"></i>删除</span>
+        </div>
+    </script>
+    <script  id="HwInputTimeTemplate" type="text/x-dot-template">
+        <div class="row-fluid icon-btn" >
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls" style="float: left">
+                        <span style="padding-top: 10px;display: inline-block;margin-right: 12px;margin-left: 5px;">开始时间:</span>
+                        <input type="text" name="mdfTypeName0"  class="m-wrap small uniform-input startTime text addStartTime "  readonly >
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls" style="float: left">
+                        <span style="padding-top: 10px;display: inline-block;margin-right: 12px;margin-left: 5px;">结束时间:</span>
+                        <input type="text" name="mdfPowerName0"  class="m-wrap small uniform-input endTime text endStartTime"   readonly>
+
+                    </div>
+                </div>
+            </div>
+
+            <span class="badge badge-info delHwTime" style="cursor: pointer"><i class="icon-minus-sign"></i>删除</span>
+        </div>
+    </script>
+    <!--摄像头-->
+    <script type="text/x-dot-template" id="ipCameraParam">
+        <div class="row-fluid" style="margin-top: 5px;">
+            <div class="span6 ">
+                <div class="control-group">
+                    <label class="control-label">账号: </label>
+                    <div class="controls">
+                        <input type="text" class="m-wrap medium" placeholder="" id="account" name="account" value="{{=it.account}}">
+                    </div>
+                </div>
+            </div>
+            <div class="span6 ">
+                <div class="control-group">
+                    <label class="control-label">密码: </label>
+                    <div class="controls">
+                        <input type="text" class="m-wrap medium" placeholder="" id="password" name="password" value="{{=it.pwd}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+</body>
+</html>

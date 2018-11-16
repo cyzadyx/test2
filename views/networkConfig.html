@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>智能节能系统V2终端配置</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="../tools/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="../tools/bootstrap/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/gritter/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/layer_mobile/need/layer.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/mobileSwitch/mobileSwitch.css" rel="stylesheet" type="text/css"/>
+
+	<link rel="shortcut icon" href="../assets/image/xunweilogo.png" />
+	<style>
+		.wifiStatus span {
+			top: 4px;
+		}
+	</style>
+</head>
+<body class="page-header-fixed page-full-width">
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="javascript:;">
+					<img src="../assets/image/logo.png" alt="logo" />
+				</a>
+				<div class="navbar hor-menu hidden-phone hidden-tablet">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><a href="systemStatus.html">系统状态</a></li>
+							<li class="active"><a href="networkConfig.html">网络配置</a></li>
+							<li><a href="deviceManage.html">设备管理</a></li>
+							<li><a href="weChat.html">微信用户</a></li>
+						</ul>
+					</div>
+				</div>
+				<ul class="nav pull-right hidden-phone hidden-tablet">
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username" id="xw_username"></span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+							<li><a href="javascript:;" id="exit_system"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav pull-right visible-phone visible-tablet" style="margin-top: -55px;" >
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username">admin</span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+							<li><a href="javascript:;" id="exit_system_mobile"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="page-container row-fluid">
+		<div class="navbar hor-menu visible-phone visible-tablet navBarTop">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li>
+						<a href="systemStatus.html"><div><img src="../assets/image/systemStatus.png"></div>系统状态</a>
+					</li>
+					<li  class="active">
+						<a href="networkConfig.html"><div><img src="../assets/image/wifiConfig.png"></div>网络配置</a>
+					</li>
+					<li>
+						<a href="deviceManage.html"><div><img src="../assets/image/device.png"></div>设备管理</a>
+					</li>
+					<li>
+						<a href="weChat.html"><div><img src="../assets/image/weChat.png"></div>微信用户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="page-content">
+			<div class="container">
+				<div class="tabbable tabbable-custom tabbable-full-width">
+					<ul class="nav nav-tabs" style="width: 218px;margin: 0 auto;padding-top: 18px;">
+						<li class="active"><a href="#tab_space" data-toggle="tab">Wifi配置</a></li>
+						<li ><a href="#tab_dev" data-toggle="tab">有线连接</a></li>
+					</ul>
+
+					<div class="tab-content ">
+						<div class="tab-pane row-fluid active" id="tab_space">
+							<div class="row-fluid">
+								<div class="   portfolio-block">
+									<span class="wifiName">WLAN</span>
+									<span class="switch-on" id="wifi"  style="float: right;border: none !important;margin-top: 10px;"></span>
+								</div>
+							</div>
+							<div class="row-fluid" id="wifiStatusInfo">
+							</div>
+							<div class="row-fluid" id="wifiInfo">
+							</div>
+						</div>
+
+						<div class="tab-pane row-fluid profile-account " id="tab_dev">
+							<div class="portlet" >
+								<div class="portlet-body">
+									<div class="row-fluid">
+										<ul class="netStatus"  style="margin: 0 20px;">
+											<li style="border: none;">
+												启用
+												<label class="netRight"><span class="switch-off" id="startNet" ></span></label>
+											</li>
+											<li style="border: none">
+												连接状态<label class="netRight" id="netStatus"></label>
+											</li>
+										</ul>
+										<div class="alert alert-info"  id="broadNewUrl">
+											<strong>提示!</strong>该主机已连接此网络，如您的PC或手机设备需要连接此网络，请使用如下URL加载此网页：
+											<span><a href="javascript:;" id="changeBroadUrl"></a></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="portlet" id="netContent">
+								<div class="portlet-body">
+									<div class="row-fluid">
+										<form class="horizontal-form ngrok" id="netConn" style="margin: 20px;">
+											<ul class="netStatus">
+												<li>
+													<label class="radio line">
+														<input type="radio" name="ipName" value="0">
+														自动获得IP地址
+													</label>
+													<label class="radio line">
+														<input type="radio" name="ipName" value="1">
+														使用下面IP地址
+													</label>
+												</li>
+											</ul>
+											<ul class="netStatus" id="netInfo">
+												<li>
+														IP地址
+													<label  class="netRight">
+														<input type="text" id="ipAddr" name="ipAddr"  class="small" />
+													</label>
+												</li>
+												<li>
+													子网掩码
+													<label  class="netRight">
+														<input type="text" id="subNet" name="subNet" class="small" />
+													</label>
+												</li>
+												<li>
+													默认网关
+													<label  class="netRight">
+														<input type="text" id="gateway" name="gateway" class="small" />
+													</label>
+												</li>
+												<li>
+													首选DNS服务器
+													<label  class="netRight">
+														<input type="text" id="firstDns"  name="firstDns"  class="small" />
+													</label>
+												</li>
+												<li>
+													备用DNS服务器
+													<label  class="netRight">
+														<input type="text" id="otherDns" name="otherDns"  class="small"/>
+													</label>
+												</li>
+												<li>
+													代理服务器
+													<label  class="netRight">
+														<input type="text" id="proxy" name="proxy" class="small"/>
+													</label>
+												</li>
+											</ul>
+
+										</form>
+										<div class="form-actions">
+											<button type="submit" class="btn blue" id="netWorkBtn">连接</button>
+											<button type="button" class="btn">取消</button>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section id="process_view" hidden style="margin-left: 65px;margin-top: 100px;"></section>
+	
+	<script src="../tools/jquery/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="../tools/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="../tools/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<script src="../tools/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../tools/cookie/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="../tools/gritter/jquery.gritter.js" type="text/javascript"></script>
+	<script src="../tools/doT/doT.min.js" type="text/javascript"></script>
+	<script src="../tools/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<!--<script src="../tools/layer/layer.js" type="text/javascript"></script>-->
+	<script src="../tools/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+	<script src="../tools/mobileSwitch/mobileSwitch.js" type="text/javascript" ></script>
+	<script src="../tools/layer_mobile/layer.js" type="text/javascript"></script>
+	<script src="../tools/validate/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../tools/spin/spin.js"></script>
+	
+	<script src="../config/app.js" type="text/javascript"></script>
+	<script src="../config/public-constant.js" type="text/javascript"></script>
+	<script src="../config/common.js" type="text/javascript"></script>
+	<script src="../assets/js/networkConfig.js" type="text/javascript"></script>
+
+	<script>
+		jQuery(document).ready(function() {
+			App.init();
+			CommonJS.fnInit();
+			NetworkConfig.fnInit();
+		});
+	</script>
+	<script type="text/x-dot-template" id="HotPointInfoTemplate">
+		<form id="HotPointInfoForm">
+			<div class="row-fluid wifiContent">
+				<div class="portfolio-block">
+					<span class="wifiName">网络ID</span>
+					<span class="wifiStatus">
+						<input type="text" id="hot_user" name="hot_user" class="small">
+					</span>
+				</div>
+			</div>
+			<div class="row-fluid wifiContent">
+				<div class="portfolio-block">
+					<span class="wifiName">密码</span>
+					<span class="wifiStatus">
+						<input type="text" id="hot_pass" name="hot_pass" class="small">
+					</span>
+				</div>
+			</div>
+			<div class="row-fluid wifiContent">
+				<div class="portfolio-block">
+					<span class="wifiName">加密方式</span>
+					<span class="wifiStatus">
+						<select id="hot_wpa">
+							<option value="0">无加密</option>
+							<option value="1">WPA</option>
+							<option value="2">WPA2</option>
+						</select>
+					</span>
+				</div>
+			</div>
+			<div class="row-fluid wifiContent">
+				<div class="portfolio-block" style="text-align: center;">
+
+						<a href="javascript:;"  class=" btn blue" id="hotConn">连接</a>
+
+				</div>
+			</div>
+		</form>
+
+	</script>
+	<script type="text/x-dot-template" id="IpInfoTemplate">
+		<form id="IpInfoForm">
+			<ul class="Switch">
+				<li style="border: none;margin-bottom: 20px;">
+					静态IP<span class="switch-off" id="IpConn"  style="float: right;border: none !important;margin-top: 10px;"></span>
+				</li>
+			</ul>
+			<ul class="Switch" style="display: none" id="ipSet">
+				<li>
+					IP地址<label ><input type="text" id="un_wifi_ip" name="ipAddr" class="small"></label>
+				</li>
+				<li>
+					子网掩码<label ><input type="text" id="un_wifi_netmask" name="subNet" class="small"></label>
+				</li>
+				<li>
+					默认网关<label ><input type="text" id="un_wifi_gateway" name="gateway" class="small"></label>
+				</li>
+				<li>
+					DNS1<label ><input type="text" id="un_wifi_dns1" name="firstDns" class="small"></label>
+				</li>
+				<li>
+					DNS2<label ><input type="text" id="un_wifi_dns2" name="otherDns" class="small"></label>
+				</li>
+				<li style="border: none">
+					代理服务器<label ><input type="text" id="un_wifi_proxy"  name="proxy" class="small"></label>
+				</li>
+			</ul>
+		</form>
+
+	</script>
+
+	<script type="text/x-dot-template" id="wifiInfoTemplate">
+		<form id="wifiInfoForm">
+			<ul class="Switch">
+				<li>
+					网络状态
+					<label >已连接</label>
+				</li>
+				<li>
+					安全性
+					<label >
+						{{? it.data.encrypt ==1}}
+							WPA
+						{{??}}
+							WPA2
+						{{?}}
+					</label>
+				</li>
+				<li>
+					IP地址
+					<label >{{=it.data.ip}}</label>
+				</li>
+				<li style="border: none;margin-bottom: 20px;">
+					静态IP
+					{{? it.data.ipAquire ==1}}
+							<span class="switch-off" id="wifiIp"  style="float: right;border: none !important;margin-top: 10px;"></span>
+					{{??}}
+							<span class="switch-on" id="wifiIp"  style="float: right;border: none !important;margin-top: 10px;"></span>
+					{{?}}
+					
+				</li>
+
+			</ul>
+
+			<ul class="Switch" style="display: none" id="ipInfo">
+				<li>
+					IP地址<label ><input type="text" id="wifi_ip" value="{{=it.data.ip}}" name="ipAddr" class="small"></label>
+				</li>
+				<li>
+					子网掩码<label ><input type="text" id="wifi_netmask" value="{{=it.data.netmask}}" name="subNet" class="small"></label>
+				</li>
+				<li>
+					默认网关<label ><input type="text" id="wifi_gateway" value="{{=it.data.gateway}}" name="gateway" class="small"></label>
+				</li>
+				<li>
+					DNS1<label ><input type="text" id="wifi_dns1" value="{{=it.data.dns1}}" name="firstDns" class="small"></label>
+				</li>
+				<li>
+					DNS2<label ><input type="text" id="wifi_dns2" value="{{=it.data.dns2}}" name="otherDns" class="small"></label>
+				</li>
+				<li style="border: none">
+					代理服务器<label ><input type="text" id="wifi_proxy" value="{{=it.data.proxy}}" name="proxy" class="small"></label>
+				</li>
+			</ul>
+		</form>
+    </script>
+
+	<script type="text/x-dot-template" id="wifiStatusTemplate">
+		<div class="row-fluid wifiContent">
+			<div class="portfolio-block" onclick="NetworkConfig.fnConnectInfo('{{=it.data.networkId}}')">
+				<span style="float: left;width: 30px;margin-top: 8px;">
+					<img src="../assets/image/ok.png" alt="">
+				</span>
+				<span class="wifiName">{{=it.data.networkId}}</span>
+				<span class="wifiStatus">
+					<img src="../assets/image/wifi.png" alt="" style="width: 32px;margin-right: 10px;">
+				</span>
+			
+			</div>
+			<div class="portfolio-block" >
+				<div class="alert alert-info"  id="wifiNewUrl">
+					<strong>提示!</strong>
+					该主机已连接此网络，如您的PC或手机设备需要连接此网络，请使用如下URL加载此网页：<span><a href="javascript:;" id="changeUrl"></a></span>
+				</div>
+			</div>
+		</div>
+		<div class="row-fluid wifiContent" style="margin-top: 30px;font-size: 16px;color: #03eaf7;">
+			<div class="portfolio-block">
+				<span class="wifiName">选取网络</span>
+			</div>
+		</div>
+		
+	</script>
+	
+	<script type="text/x-dot-template" id="wifiTemplate">
+		{{ for(var i=0;i<(it.data.length);i++ ){ }}
+			{{? it.data[i].status==0}}
+			<div class="row-fluid wifiContent">
+				<div class="portfolio-block" onclick="NetworkConfig.fnUnConnectInfo('{{=it.data[i].networkId}}','{{=it.data[i].remembered}}')">
+					<span class="wifiName">{{=it.data[i].networkId}}</span>
+					<span class="wifiStatus">
+						<img src="../assets/image/wifi.png" alt="" style="width: 32px;margin-right: 10px;">
+					</span>
+				</div>
+			</div>
+			{{? }}
+
+
+		{{ } }}
+	</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>智能节能系统V2终端配置</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="../tools/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/bootstrap/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="../tools/bootstrap/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/gritter/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+	<link href="../tools/layer_mobile/need/layer.css" rel="stylesheet" type="text/css"/>
+    <link href="../tools/progress/number-pb.css" rel="stylesheet">
+
+	<link rel="shortcut icon" href="../assets/image/xunweilogo.png" />
+
+	<style>
+		.controls .text {
+			display: block;
+			margin-top: 7px;
+			font-weight: 400;
+			font-size: 14px;
+		}
+		.layui-m-layercont .netStatus li{
+			border-bottom: 1px solid #e0e0e0;
+		}
+	</style>
+</head>
+<body class="page-header-fixed page-full-width">
+
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="javascript:;"><img src="../assets/image/logo.png" alt="logo" /></a>
+				<div class="navbar hor-menu hidden-phone hidden-tablet">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><a href="systemStatus.html">系统状态</a></li>
+							<li><a href="networkConfig.html">网络配置</a></li>
+							<li><a href="deviceManage.html">设备管理</a></li>
+							<li><a href="weChat.html">微信用户</a></li>
+						</ul>
+					</div>
+				</div>
+				<ul class="nav pull-right hidden-phone hidden-tablet">
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username" id="xw_username"></span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+							<li><a href="javascript:;" id="exit_system"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav pull-right visible-phone visible-tablet" style="margin-top: -55px;" >
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="username">admin</span><i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="myInfo.html"><i class="icon-user"></i>我的</a></li>
+							<li><a href="testData/energyData.html"><i class="icon-leaf"></i>节能数据</a></li>
+							<li><a href="javascript:;" id="exit_system_mobile"><i class="icon-off"></i>退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="page-container row-fluid">
+		<div class="navbar hor-menu visible-phone visible-tablet navBarTop">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li>
+						<a href="systemStatus.html"><div><img src="../assets/image/systemStatus.png"></div>系统状态</a>
+					</li>
+					<li>
+						<a href="deviceManage.html"><div><img src="../assets/image/wifiConfig.png"></div>网络配置</a>
+					</li>
+					<li>
+						<a href="deviceManage.html"><div><img src="../assets/image/device.png"></div>设备管理</a>
+					</li>
+					<li>
+						<a href="weChat.html"><div><img src="../assets/image/weChat.png"></div>微信用户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="page-content">
+			<div class="container-fluid promo-page">
+
+				<div class="profile-account ">
+					<div class="portlet" id="netContent" style="margin-top: 30px">
+						<div class="portlet-body">
+							<div class="row-fluid">
+								<div class="horizontal-form"  style="margin: 20px;">
+									<div style="color: #09f1f3;">
+										<h3 style="float: left">基本信息</h3>
+										<label style="float: right"><button class="btn blue" id="mdfPass">修改密码</button></label>
+									</div>
+									<ul class="netStatus" >
+										<li>
+											用户名<label  class="netRight" id="userName">admin</label>
+										</li>
+										<li>
+											密码<label  class="netRight" >......</label>
+										</li>
+									</ul>
+									<div style="color: #09f1f3;">
+										<h3 style="float: left">节能信息</h3>
+										<label style="float: right"><button class="btn blue" id="setEnergy">设置</button></label>
+									</div>
+									<ul class="netStatus" >
+										<li>
+											电价(元/度)<label  class="netRight" id="ele_price"></label>
+										</li>							
+									</ul>
+									<div  style="color: #09f1f3;">
+										<h3 style="float: left">软件版本</h3>
+										<label style="float: right"><button class="btn blue" id="remoteUpgrade">升级</button></label>
+									</div>
+
+									<ul class="netStatus">
+										<li>
+											软采版本
+											<label  class="netRight" id="v_sdcs"></label>
+										</li>
+										<li>
+											硬采服务<label  class="netRight" id="v_hdcs"></label>
+										</li>
+										<li>
+											视频服务<label  class="netRight" id="v_media"></label>
+										</li>
+										<li>
+											数据同步服务<label  class="netRight" id="v_dsyn"></label>
+										</li>
+										<li>
+											数据库版本<label  class="netRight"  id="v_db"></label>
+										</li>
+									</ul>
+									<h3  style="color: #09f1f3;">硬件版本</h3>
+									<ul class="netStatus" >
+										<li>
+											主机序列号<label  class="netRight" id="hostNo"></label>
+										</li>
+										<li>
+											核心板<label  class="netRight" id="corePanel"></label>
+										</li>
+										<li>
+											采集板<label  class="netRight" id="loadPanel"></label>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+    <div id="updateModal" class="modal hide fade" style="color: black"  aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span style="color: green;"><h3 id=" "><i class="fa fa-edit"></i>模块升级</h3></span>
+                    <div class="caption">
+                        <span><h5>现在正在升级,请不要关闭窗口</h5></span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="updateForm" >
+                        <div class="row-fluid">
+                            <div class="span12"  style="padding-top: 5px">
+                                <article>
+                                    <h4 class="title"></h4>
+                                    <div class="number-pb">
+                                        <div class="number-pb-shown"></div>
+                                        <div class="number-pb-num">0%</div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="span12">
+                                <div class="span6"   style="margin-top: 10px;">
+                                    <h3>
+                                        <span class="title" >状态:</span>
+                                        <span  id="updateStatus"></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn blue" id="updateSubmit" style="display: none">解锁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script src="../tools/jquery/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="../tools/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="../tools/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<script src="../tools/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../tools/cookie/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="../tools/gritter/jquery.gritter.js" type="text/javascript"></script>
+	<script src="../tools/doT/doT.min.js" type="text/javascript"></script>
+	<!--<script src="./tools/layer/layer.js" type="text/javascript"></script>-->
+	<script src="../tools/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<script src="../tools/validate/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../tools/validate/form-validate.js" type="text/javascript"></script>
+	<script src="../tools/layer_mobile/layer.js" type="text/javascript"></script>
+    <script src="../tools/progress/number-pb.js" type="text/javascript"></script>
+
+	<script src="../config/app.js" type="text/javascript"></script>
+	<script src="../config/public-constant.js" type="text/javascript"></script>
+	<script src="../config/common.js" type="text/javascript"></script>
+	<script src="../config/encrypt.js" type="text/javascript"></script>
+	
+	<script src="../assets/js/myInfo.js" type="text/javascript"></script>
+
+	<script>
+		jQuery(document).ready(function() {
+			App.init();
+			CommonJS.fnInit();
+			MyInfo.fnInit();
+		});
+	</script>
+	<script type="text/x-dot-template" id="passWordTemplate">
+		<form id="mdfPassForm">
+			<ul class="netStatus">
+				<!--<li>
+					旧密码<label class="netRight"><input type="password" id="oldPass" name="oldPass" class="small"></label>
+				</li>-->
+				<li>
+					新密码<label class="netRight"><input type="password" id="newPass" name="newPass" class="small"></label>
+				</li>
+				<li style="border: none">
+					确认密码<label class="netRight"><input type="password" id="okPass" name="okPass" class="small"></label>
+				</li>
+			</ul>
+		</form>
+	</script>
+	<script type="text/x-dot-template" id="energyParamTemplate">
+		<form id="energyParam">
+			<ul class="netStatus">				
+				<li style="border: none;">
+					电价(元/度)<label class="netRight"><input type="text" id="un_price" name="un_price" class="small"></label>
+				</li>				
+			</ul>
+		</form>
+
+	</script>
+</body>
+</html>

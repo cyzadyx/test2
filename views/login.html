@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>用户登录</title>
+    <link href="../tools/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../tools/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/image/xunweilogo.png" rel="shortcut icon"/>
+
+</head>
+
+<body class="body">
+<div class="login-main">
+    <div class="login-content">
+        <div class="login-title"><h2>智能节能系统V2--终端配置</h2></div>
+        <div class="signin" id="login">
+            <div class="signin-head">
+                登录
+            </div>
+            <span id="tip">&nbsp;</span>
+            <form class="form-signin" role="form" id="useNameForm">
+                <input type="text" class="form-control" id="username" style="margin-top: 5px;width: 100%" placeholder="用户名"  autofocus />
+                <input type="password" class="form-control" id="password" placeholder="密码"  style="margin-top: 5px;width: 100%;" />
+                <button class="btn btn-lg btn-color btn-block" style="" type="button" id="loginIn">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="../tools/jquery/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="../tools/cookie/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="../tools/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../tools/spin/spin.js"></script>
+<script src="../tools/security/security.js"></script>
+
+<script src="../config/encrypt.js" type="text/javascript"></script>
+<script src="../config/public-constant.js" type="text/javascript"></script>
+<script src="../assets/js/login.js" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function() {
+        Login.fnInit();
+    });
+</script>
+</html>
