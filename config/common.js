@@ -12,6 +12,7 @@ var CommonJS = function () {
         $("#xw_username").text(userName);
     };
 
+	
     var fnInitEventPage = function () {
         $(".dropdown-menu li").addClass("topClass");
 
